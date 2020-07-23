@@ -68,6 +68,12 @@ class GameFragment : Fragment() {
             binding.scoreText.text = newWord
         })
 
+        viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer { hasFinished ->
+            if (hasFinished) {
+                viewModel.onGameFinishComplete()
+                gameFinished()
+            }
+        })
         return binding.root
     }
 
